@@ -317,6 +317,33 @@ Notice: you could instead pass the 'display' attribute set to false
 	}
 
 /* 
+Make error tag display in the same line using `inline` option:
+
+#mdx:ErrorInline idem
+
+Output:
+
+#mdx:ErrorInline -o httidy
+
+*/
+
+	function testErrorInlineOption(){
+		#mdx:ErrorInline
+		$field = new TextField('name');
+		$field->required('Name is required!')
+			->context(['name'=>''])
+			->error(['display'=>true,'inline'=>true]);
+		#/mdx echo $field
+
+		$output = $field->__toString();
+
+		$this->assertContains('inline-block',$output);
+
+		echo $field;
+
+	}
+
+/* 
 ## Specify a default value
 
 You can setup a default value to be used in case the field is left blank and/or a validation error occurs:

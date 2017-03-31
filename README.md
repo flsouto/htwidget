@@ -323,6 +323,32 @@ Output:
 Notice: you could instead pass the 'display' attribute set to false
 
 
+Make error tag display in the same line using `inline` option:
+
+```php
+
+$field = new TextField('name');
+$field->required('Name is required!')
+	->context(['name'=>''])
+	->error(['display'=>true,'inline'=>true]);
+
+echo $field;
+```
+
+Output:
+
+```html
+
+<div class="widget name" style="display:block">
+ <input name="name" value="" />
+ <div style="color:yellow;background:red;display:inline-block;margin-right:10px" class="error">
+    Name is required!
+ </div>
+</div>
+
+```
+
+
 ## Specify a default value
 
 You can setup a default value to be used in case the field is left blank and/or a validation error occurs:

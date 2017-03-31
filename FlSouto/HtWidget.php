@@ -53,6 +53,14 @@ abstract class HtWidget extends HtField{
 			foreach($error as $k=>$v){
 				if($k=='display'){
 					$this->error_display = (bool)$v;
+				} 
+				else if($k=='inline') {
+					if($v){
+						$this->error_attrs['style']['display'] = 'inline-block';
+						$this->error_attrs['style']['margin-right'] = '10px';
+					} else {
+						$this->error_attrs['style']['display'] = 'block';							
+					}
 				} else {
 					if($k=='style' && is_array($v)){
 						foreach($v as $k2=>$v2){
