@@ -27,7 +27,7 @@ abstract class HtWidget extends HtField{
 		return $this;
 	}
 
-	function inline($inline){
+	function inline($inline=true){
 		$this->inline = (bool)$inline;
 		return $this;
 	}
