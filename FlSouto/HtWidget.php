@@ -51,7 +51,17 @@ abstract class HtWidget extends HtField{
 	function error($error){
 		if(is_array($error)){
 			foreach($error as $k=>$v){
-				$this->error_attrs[$k] = $v;
+				if($k=='display'){
+					$this->error_display = (bool)$v;
+				} else {
+					if($k=='style' && is_array($v)){
+						foreach($v as $k2=>$v2){
+							$this->error_attrs[$k][$k2] = $v2;
+						}
+					} else {
+						$this->error_attrs[$k] = $v;
+					}
+				}
 			}
 		} else {
 			$this->error_display = (bool)$error;
