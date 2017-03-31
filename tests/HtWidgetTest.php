@@ -240,13 +240,15 @@ Output:
 
 /* 
 
-You can customize the error message tag by passing an array of attributes to the error function (in which case the error displaying is automatically enabled):
+You can customize the error message tag by passing an array of attributes to the error function. 
 
 #mdx:9 idem
 
 Output:
 
 #mdx:9 -o httidy
+
+Notice that in this case we enable the error display by setting the 'display' attribute.
 
 */
 
@@ -255,13 +257,28 @@ Output:
 		$field = new TextField('name');
 		$field->required('Name is required!')
 			->context(['name'=>''])
-			->error(['class'=>'errmsg','style'=>['padding'=>'5px']]);
+			->error(['display'=>true,'class'=>'errmsg','style'=>['padding'=>'5px']]);
 		#/mdx echo $field
 		$output = $field->__toString();
 
 		$this->assertContains('padding:5px',$output);
 		$this->assertContains('errmsg',$output);
 		$this->assertContains('Name is required',$output);
+
+		echo $field;
+
+	}
+
+	function testErrorAttrStyleIsNotOverritten(){
+		$field = new TextField('name');
+		$field->required('Name is required!')
+			->context(['name'=>''])
+			->error(['display'=>true,'class'=>'errmsg','style'=>['padding'=>'5px']])
+			->error(['moreStyle'=>'OK']);
+		$output = $field->__toString();
+
+		$this->assertContains('padding:5px',$output);
+		$this->assertContains('moreStyle',$output);
 
 		echo $field;
 
@@ -276,6 +293,8 @@ Disable error displaying by passing a negative (i.e. false) argument:
 Output:
 
 #mdx:10 -o httidy
+
+Notice: you could instead pass the 'display' attribute set to false
 
 */
 
