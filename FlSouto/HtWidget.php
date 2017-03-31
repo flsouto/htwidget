@@ -53,7 +53,6 @@ abstract class HtWidget extends HtField{
 			foreach($error as $k=>$v){
 				$this->error_attrs[$k] = $v;
 			}
-			$this->error_display = true;
 		} else {
 			$this->error_display = (bool)$error;
 		}
