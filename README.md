@@ -266,14 +266,14 @@ Output:
 
 
 
-You can customize the error message tag by passing an array of attributes to the error function (in which case the error displaying is automatically enabled):
+You can customize the error message tag by passing an array of attributes to the error function. 
 
 ```php
 
 $field = new TextField('name');
 $field->required('Name is required!')
 	->context(['name'=>''])
-	->error(['class'=>'errmsg','style'=>['padding'=>'5px']]);
+	->error(['display'=>true,'class'=>'errmsg','style'=>['padding'=>'5px']]);
 
 echo $field;
 ```
@@ -284,12 +284,14 @@ Output:
 
 <div class="widget name" style="display:block">
  <input name="name" value="" />
- <div style="padding:5px" class="errmsg">
+ <div style="color:yellow;background:red;padding:5px" class="errmsg">
     Name is required!
  </div>
 </div>
 
 ```
+
+Notice that in this case we enable the error display by setting the 'display' attribute.
 
 
 
@@ -312,11 +314,13 @@ Output:
 
 <div class="widget name" style="display:block">
  <input name="name" value="" />
- <div style="padding:5px" class="errmsg">
+ <div style="color:yellow;background:red;padding:5px" class="errmsg">
  </div>
 </div>
 
 ```
+
+Notice: you could instead pass the 'display' attribute set to false
 
 
 ## Specify a default value
